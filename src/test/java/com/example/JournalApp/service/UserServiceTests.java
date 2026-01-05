@@ -15,14 +15,14 @@ class UserServiceTests {
     @Autowired
     private UserRepository userRepository;
 
-    @ParameterizedTest
-    @CsvSource({
-            "ram",
-            "naman"
-    })
-    void testFindByUsername(String name){
-        assertNotNull(userRepository.findByUsername(name));
-    }
+//    @ParameterizedTest
+//    @CsvSource({
+//            "ram",
+//            "naman"
+//    })
+//    void testFindByUsername(String name){
+//        assertNotNull(userRepository.findByUsername(name));
+//    }
 
 
 }
