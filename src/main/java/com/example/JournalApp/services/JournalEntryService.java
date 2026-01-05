@@ -40,10 +40,6 @@ public class JournalEntryService {
         return journalEntryRepository.save(journalEntry);
     }
 
-    public List<JournalEntry> getEntries(){
-        return journalEntryRepository.findAll();
-    }
-
     public Optional<JournalEntry> getEntryById(ObjectId id){
         return journalEntryRepository.findById(id);
     }
