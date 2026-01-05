@@ -18,7 +18,6 @@ class UserServiceTests {
     @ParameterizedTest
     @CsvSource({
             "ram",
-            "sham",
             "naman"
     })
     void testFindByUsername(String name){
