@@ -22,17 +22,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<List<User>> getAllUsers(){
-//        List<User> allUsers = userService.getAllUsers();
-//        if(allUsers != null){
-//            return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-
-
-
     @PutMapping
     public ResponseEntity<User> updateUserInfo(@RequestBody User user){
         //Authenticated user and password
