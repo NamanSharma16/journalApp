@@ -2,10 +2,12 @@ package com.example.JournalApp.repository;
 
 import com.example.JournalApp.entities.User;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
-import reactor.core.publisher.Mono;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends ReactiveMongoRepository<User, ObjectId> {
+public interface UserRepository extends MongoRepository<User, ObjectId> {
 
-    public Mono<User> findByUsername(String username);
+    public User findByUsername(String username);
+
+    public User deleteByUsername(String username);
+
 }

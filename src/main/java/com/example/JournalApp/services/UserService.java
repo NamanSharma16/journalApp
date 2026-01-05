@@ -4,36 +4,54 @@ import com.example.JournalApp.entities.User;
 import com.example.JournalApp.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.Optional;
 
-@Component
+@Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public Mono<User> saveUser(User user){
+    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public User saveNewUser(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(List.of("USER"));
         return userRepository.save(user);
     }
 
-    public Flux<User> getAllUsers(){
+    public User saveNewAdminUser(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(List.of("USER", "ADMIN"));
+        return userRepository.save(user);
+    }
+
+    public User saveUser(User user){
+        return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    public Mono<User> getUserInfo(User user){
-        return userRepository.findByUsername(user.getUsername())
-                .filter(foundUser -> Objects.equals(foundUser.getUsername(), user.getUsername()));
+    public Optional<User> findById(ObjectId id){
+        return userRepository.findById(id);
     }
 
-    public Mono<User> findByUserName(String username){
+    public void deleteById(ObjectId id){
+        userRepository.deleteById(id);
+    }
+
+    public User findByUserName(String username){
         return userRepository.findByUsername(username);
     }
 
-    public void deleteUser(ObjectId id) {
-        userRepository.deleteById(id);
+    public void deleteUser(User user) {
+        userRepository.delete(user);
     }
 }
