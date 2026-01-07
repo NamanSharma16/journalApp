@@ -3,6 +3,7 @@ package com.example.JournalApp.controller;
 import com.example.JournalApp.entities.User;
 import com.example.JournalApp.repository.UserRepository;
 import com.example.JournalApp.services.UserService;
+import com.example.JournalApp.services.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private WeatherService weatherService;
 
     @PutMapping
     public ResponseEntity<User> updateUserInfo(@RequestBody User user){
@@ -43,6 +47,13 @@ public class UserController {
         String username = auth.getName();
         userRepository.deleteByUsername(username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> greeting(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        return new ResponseEntity<>("Hi "+ auth.getName() + " weather feels like: " + weatherService.getWeather("Mumbai").getCurrent().getFeelslike() , HttpStatus.OK);
     }
 
 }
