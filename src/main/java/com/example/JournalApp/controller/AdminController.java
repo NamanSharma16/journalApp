@@ -1,5 +1,6 @@
 package com.example.JournalApp.controller;
 
+import com.example.JournalApp.cache.AppCache;
 import com.example.JournalApp.entities.User;
 import com.example.JournalApp.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AppCache appCache;
+
     @GetMapping("/all-users")
     public ResponseEntity<?> getAllUsers() {
         List<User> all = userService.getAllUsers();
@@ -35,6 +39,11 @@ public class AdminController {
             log.debug("User creation encountered error");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/clear-app-cache")
+    public void clearAppCache() {
+        appCache.init();
     }
 }
 

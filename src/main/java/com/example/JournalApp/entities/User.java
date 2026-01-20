@@ -27,4 +27,7 @@ public class User {
     private List<JournalEntry> journalEntries = new ArrayList<>();
     private List<String> roles;
 
+    private String email;
+    private boolean sentimentAnalysis;
+
 }
