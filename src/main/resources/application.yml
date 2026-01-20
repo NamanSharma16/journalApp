@@ -1,0 +1,29 @@
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://namanleo8055_db_user:hinM6E2fdR7t9N8l@cluster0.ngrt3xu.mongodb.net/?appName=Cluster0
+      database: journaldb
+      auto-index-creation: true
+  main:
+    allow-circular-references: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: email@gmail.com
+    password: apppassword
+    properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+
+weather:
+  api:
+    key: 4104d530baf25169c2589c7d5d6cd258
+
+server:
+  port: 8080
+  servlet:
+    context-path: /journal-app
