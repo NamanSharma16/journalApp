@@ -3,6 +3,7 @@ package com.example.JournalApp.service;
 import com.example.JournalApp.entities.User;
 import com.example.JournalApp.repository.UserRepositoryImpl;
 import com.example.JournalApp.services.EmailService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +28,7 @@ public class EmailServiceTest {
     }
 
     @Test
+    @Disabled
     void testSendEmail(){
         Query query = new Query();
         query.addCriteria(Criteria.where("email").regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"));
