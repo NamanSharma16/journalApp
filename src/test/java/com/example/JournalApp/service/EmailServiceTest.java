@@ -33,6 +33,6 @@ public class EmailServiceTest {
         query.addCriteria(Criteria.where("sentimentAnalysis").is(true));
         List<String> emails = mongoTemplate.find(query, User.class).stream().map(User::getEmail).toList();
         emails.forEach(email->
-                emailService.sendEmail(email,"from journal app","hi sir you have a message from Naman...testing his first email service"));
+                emailService.sendEmail(email,"from journal app","hi sir ..testing his email service"));
     }
 }
