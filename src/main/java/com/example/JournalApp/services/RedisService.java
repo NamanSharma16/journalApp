@@ -2,8 +2,6 @@ package com.example.JournalApp.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -14,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RedisService {
 
-    private static final Logger log = LogManager.getLogger(RedisService.class);
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -37,7 +34,7 @@ public class RedisService {
             String jsonString = objectMapper.writeValueAsString(o);
             redisTemplate.opsForValue().set(key,jsonString,ttl, TimeUnit.SECONDS);
         } catch(Exception e) {
-            log.error("Error " + e.getMessage());
+            log.error("Error {}", e.getMessage());
         }
     }
 
