@@ -1,6 +1,7 @@
 package com.example.JournalApp.controller;
 
 import com.example.JournalApp.entities.User;
+import com.example.JournalApp.entities.WeatherResponseDTO;
 import com.example.JournalApp.repository.UserRepository;
 import com.example.JournalApp.services.UserService;
 import com.example.JournalApp.services.WeatherService;
@@ -52,8 +53,14 @@ public class UserController {
     @GetMapping
     public ResponseEntity<?> greeting(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        return new ResponseEntity<>("Hi "+ auth.getName() + " weather feels like: " + weatherService.getWeather("Mumbai").getCurrent().getFeelslike() , HttpStatus.OK);
+        WeatherResponseDTO weatherResponseDTO = weatherService.getWeather("Mumbai");
+        String greeting = "";
+        if(weatherResponseDTO != null){
+            greeting = ", weather feels like: " + weatherResponseDTO.getCurrent().getFeelslike();
+        } else {
+            greeting = ", unable to fetch weather data at the moment.";
+        }
+        return new ResponseEntity<>("Hi "+ auth.getName() + greeting , HttpStatus.OK);
     }
 
 }

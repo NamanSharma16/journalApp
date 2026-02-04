@@ -3,6 +3,7 @@ package com.example.JournalApp.entities;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class WeatherResponseDTO {
 
     @Getter
     @Setter
+    @NoArgsConstructor
     public class Current{
         private int temperature;
         @JsonProperty("weather_descriptions")

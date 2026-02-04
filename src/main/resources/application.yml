@@ -5,6 +5,9 @@ spring:
       uri: mongodb+srv://namanleo8055_db_user:hinM6E2fdR7t9N8l@cluster0.ngrt3xu.mongodb.net/?appName=Cluster0
       database: journaldb
       auto-index-creation: true
+  redis:
+    host: localhost
+    port: 6379
   main:
     allow-circular-references: true
   mail:
