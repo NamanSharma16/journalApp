@@ -52,4 +52,9 @@ public class PublicController {
             return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @GetMapping("/health-check")
+    public String healthCheck(){
+        return "ok";
+    }
 }
